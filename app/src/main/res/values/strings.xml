@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">Sf</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="textView_Regitration">Регистрация</string>
+    <string name="e_mail_hint">Введите ваш e-mail</string>
+    <string name="password_hint">Введите пароль</string>
+    <string name="password_hint_confirm">Введите пароль еще раз</string>
+    <string name="user_name_hint">Введите ваше имя</string>
+    <string name="button_sign_in">Войти</string>
+    <string name="button_registration">Зарегестрироваться</string>
+    <string name="email_not_valid">Введите корректный email</string>
+    <string name="password_not_valid">Пароль должен быть не менее 6 символов</string>
+    <string name="email_empty">Введите email</string>
+    <string name="password_empty">Введите пароль</string>
+    <string name="confirm_pass_empty">Введите пароль еще раз</string>
+    <string name="confirm_dont_match_pass">Пароли не совпадают</string>
+    <string name="registration_successfull">Вы зарегестрированы!</string>
+    <string name="email_use_already">Такой email уже зарегестрирован</string>
+    <string name="registration_error">Произошла ошибка, попробуйте позже</string>
+    <string name="error_sign_in">Произошла ошибка</string>
+    <string name="error_sign_in_password">Пароль введен неверно</string>
+    <string name="error_sign_in_email_not_found">Такого пользователя не существует</string>
+    <string name="user_name_isEmpty">Введите ваше имя</string>
+    <string name="name_ad_hint">Введите название</string>
+    <string name="details_ad_hint">Подробнее</string>
+    <string name="adress_ad_hint">Введите адрес</string>
+    <string name="add_ad">Добавить объявление</string>
+    <string name="choose_image_toast">Выберете фотографию</string>
+    <string name="name_ad_toast">Введите название объявления</string>
+    <string name="description_ad_toast">Напишите подробнее</string>
+    <string name="address_ad_toast">Введите адрес</string>
+    <string name="ad_succefull_add">Объявление добавлено</string>
+    <string name="add_ad_error_toast">Произошла ошибка, попробуйте позднее</string>
+    <string name="ad_isEmpty">Для вашего города объявлений пока что нет</string>
+    <string name="dialog_permission_message">Для работы приложения нужен доступ к геолокации</string>
+    <string name="dialog_permission_title">Доступ к геолокации</string>
+    <string name="toast_permission_denied">Без доступа к локации регистрация не возможна</string>
+</resources>

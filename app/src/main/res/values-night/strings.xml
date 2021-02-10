@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="textView_Regitration">Регистрация</string>
+    <string name="e_mail_hint">Введите ваш e-mail</string>
+    <string name="password_hint">Введите пароль</string>
+    <string name="password_hint_confirm">Введите пароль еще раз</string>
+    <string name="button_sign_in">Войти</string>
+    <string name="button_registration">Зарегестрироваться</string>
+    <string name="add_ad">Добавить объявление</string>
+    <string name="ad_isEmpty">Для вашего города объявлений пока что нет</string>
+</resources>

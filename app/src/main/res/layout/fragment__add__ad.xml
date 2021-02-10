@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".add_ad.ui.Fragment_Add_Ad">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <EditText
+            android:id="@+id/editText_name_ad"
+            android:singleLine="true"
+            android:maxLength="30"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="10dp"
+            android:ems="10"
+            android:hint="@string/name_ad_hint"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/editText_details_ad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            android:ems="10"
+            android:hint="@string/details_ad_hint"
+            android:singleLine="false"
+            android:inputType="textMultiLine"
+            android:ellipsize="end"
+            android:maxLength="200"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editText_name_ad" />
+
+
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            android:hint="@string/adress_ad_hint"
+            app:layout_constraintTop_toBottomOf="@+id/editText_details_ad"
+            tools:layout_editor_absoluteX="-16dp" />
+
+        <ImageButton
+            android:id="@+id/imageButton_choose_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_baseline_photo_library_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:backgroundTint="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/autoCompleteEditText"
+            tools:ignore="ContentDescription"
+            tools:targetApi="lollipop" />
+
+        <Button
+            android:id="@+id/buttonAddAdtoFirebase"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/add_ad"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageButton_choose_image" />
+
+        <ProgressBar
+            android:id="@+id/progressBar_add_ad"
+            style="?android:attr/progressBarStyle"
+            android:visibility="invisible"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:layout_constraintBottom_toTopOf="@+id/imageButton_choose_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</FrameLayout>
