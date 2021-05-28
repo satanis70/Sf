@@ -1,4 +1,4 @@
-package com.ermilov.sf.account.model
+package com.ermilov.sf.account.room
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

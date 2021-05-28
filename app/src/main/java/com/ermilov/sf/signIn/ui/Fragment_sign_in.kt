@@ -2,6 +2,7 @@ package com.ermilov.sf.signIn.ui
 
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -11,6 +12,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
@@ -28,10 +30,8 @@ class Fragment_sign_in : Fragment() {
     companion object{
         val validate = Validate()
         private lateinit var auth: FirebaseAuth
-        const val FINE_LOCATION_CODE = 174
-        const val COARSE_LOCATION_CODE = 175
     }
-
+    var buttonCount = 0
     lateinit var navController: NavController
 
     override fun onCreateView(
@@ -44,7 +44,6 @@ class Fragment_sign_in : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        checkforpermissionsLocation(android.Manifest.permission.ACCESS_FINE_LOCATION, FINE_LOCATION_CODE)
         navController = Navigation.findNavController(view)
         val user = Firebase.auth.currentUser
         if (user != null) {
@@ -54,7 +53,7 @@ class Fragment_sign_in : Fragment() {
 
 
         textView_registration.setOnClickListener {
-                navController.navigate(R.id.action_singinFragment_to_registrationFragment)
+                navController.navigate(R.id.action_singinFragment_to_choosecityfragment)
         }
 
         button_sign_in.setOnClickListener {
@@ -93,6 +92,20 @@ class Fragment_sign_in : Fragment() {
             }
         }
 
+        val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
+            if (buttonCount >= 1) {
+                val intent = Intent(Intent.ACTION_MAIN)
+                intent.addCategory(Intent.CATEGORY_HOME)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(intent)
+                buttonCount = 0
+            } else {
+                Toast.makeText(requireContext(), R.string.exitApp, Toast.LENGTH_SHORT).show()
+                buttonCount++
+            }
+
+        }
+
     }
 
 
@@ -101,41 +114,6 @@ class Fragment_sign_in : Fragment() {
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(windowToken, 0)
     }
-
-
-    private fun checkforpermissionsLocation(permission:String, requestcode: Int){
-            when{
-                ContextCompat.checkSelfPermission(requireContext(), permission) == PackageManager.PERMISSION_GRANTED ->{ }
-                ContextCompat.checkSelfPermission(requireContext(), permission) == PackageManager.PERMISSION_DENIED ->{
-                     showDialogPermisssion(permission, requestcode)
-                }
-                else ->
-                    requestPermissions(arrayOf(permission), requestcode)
-            }
-
-    }
-
-    private fun showDialogPermisssion(permission:String, requestcode: Int){
-        val builder = AlertDialog.Builder(requireContext())
-        builder.apply {
-            setMessage(R.string.dialog_permission_message)
-            setTitle(R.string.dialog_permission_title)
-            setPositiveButton("Ok"){dialog, which ->
-                requestPermissions(arrayOf(permission), requestcode)
-            }
-        }
-
-        val dialog = builder.create()
-        dialog.show()
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        if (grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED){
-            Toast.makeText(requireContext(), R.string.toast_permission_denied, Toast.LENGTH_SHORT).show()
-            activity?.finish()
-        }
-    }
-
 
 
 

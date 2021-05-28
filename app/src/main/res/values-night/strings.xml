@@ -8,4 +8,13 @@
     <string name="button_registration">Зарегестрироваться</string>
     <string name="add_ad">Добавить объявление</string>
     <string name="ad_isEmpty">Для вашего города объявлений пока что нет</string>
+    <string name="acTextView">Выберите город</string>
+    <string name="nextbutton">Далее</string>
+    <string name="myAd">Мои объявления</string>
+    <string name="myMessages">Мои сообщения</string>
+    <string name="exitAccount">Выйти из аккаунта</string>
+    <string name="open_drawer">Open</string>
+    <string name="close_drawer">Close</string>
+    <string name="myAd_isEmpty">У вас пока что нету объявлений</string>
+    <string name="adOpen_message_button">Написать</string>
 </resources>

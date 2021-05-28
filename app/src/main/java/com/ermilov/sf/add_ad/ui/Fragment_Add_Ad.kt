@@ -40,6 +40,7 @@ class Fragment_Add_Ad : Fragment() {
         val GALLERY_REQUEST_CODE = 56
         val validate = Validate()
         val user = Firebase.auth.currentUser
+        val firebaseInstance = FirebaseInstance
     }
     lateinit var navController: NavController
     var imageByte: ByteArray = ByteArray(0)
@@ -58,17 +59,19 @@ class Fragment_Add_Ad : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
-        val placesApi = PlaceAPI.Builder().apiKey("AIzaSyChjP5hsInhv3gwcpz5mKdSMBn6MxIegns").build(
+        val placesApi = PlaceAPI.Builder().apiKey("AIzaSyCDzs3ckrXm_0N5s2zBwumCMQDDhxGvTYw").build(
                 requireContext()
         )
         autoCompleteEditText.setAdapter(PlacesAutoCompleteAdapter(requireContext(), placesApi))
         autoCompleteEditText.onItemClickListener =
             AdapterView.OnItemClickListener { parent, _, position, _ ->
                 val place = parent.getItemAtPosition(position) as Place
-                val geocoder = Geocoder(requireContext(), Locale.getDefault())
+                val myLocale = Locale("ru", "RU")
+                val geocoder = Geocoder(requireContext(), myLocale)
                 val address = geocoder.getFromLocationName(place.description, 1)
                 adressAd = address[0].getAddressLine(0).toString()
                 city = address[0].locality
+                Toast.makeText(requireContext(), city, Toast.LENGTH_SHORT).show()
                 autoCompleteEditText.setText(adressAd)
                 view.hideKeyboard()
             }
@@ -138,19 +141,19 @@ class Fragment_Add_Ad : Fragment() {
     }
 
     private fun addtoFirebaseDatabase(city: String): Task<Void> {
-        return FirebaseInstance.firebaseFirestoreInstanse.collection("adresses")
+        return firebaseInstance.firebaseFirestoreInstanse().collection("adresses")
                 .document(city).collection(city).document().set(adressmap)
     }
 
     private fun addtoFirebaseDatabaseMyAd(): Task<Void> {
-        return FirebaseInstance.firebaseFirestoreInstanse.collection("MyAd")
+        return firebaseInstance.firebaseFirestoreInstanse().collection("MyAd")
                 .document(user?.uid.toString()).collection(user?.uid.toString()).document().set(adressmap)
     }
 
     private fun currentDate() : String{
         val date = Date()
         val newDate = Date(date.time)
-        val dt = SimpleDateFormat("yyyy-MM-dd HH:mm",  Locale.getDefault())
+        val dt = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())
         return dt.format(newDate)
     }
 

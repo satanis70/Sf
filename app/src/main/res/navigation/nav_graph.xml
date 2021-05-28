@@ -12,8 +12,8 @@
         android:label="fragment_sign_in"
         tools:layout="@layout/fragment_sign_in" >
 
-        <action android:id="@+id/action_singinFragment_to_registrationFragment"
-         app:destination="@id/fragment_Registration">
+        <action android:id="@+id/action_singinFragment_to_choosecityfragment"
+         app:destination="@id/choose_city_fragment">
         </action>
 
         <action android:id="@+id/action_singinFragment_to_Account_fragment"
@@ -25,10 +25,14 @@
         android:id="@+id/fragment_Registration"
         android:name="com.ermilov.sf.registration.ui.Fragment_Registration"
         android:label="fragment_registration"
-        tools:layout="@layout/fragment_registration" >
+        tools:layout="@layout/fragment_registration"
+      >
         <action
             android:id="@+id/action_fragment_Registration_to_fragment_account"
-            app:destination="@id/fragment_account" />
+            app:destination="@id/fragment_account"
+            app:launchSingleTop="false"
+            app:popUpTo="@id/fragment_account"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -40,6 +44,40 @@
         <action android:id="@+id/action_account_fragment_to_addAd_fragment"
             app:destination="@id/fragment_add_ad">
         </action>
+        <action
+            android:id="@+id/action_fragment_account_to_myAd"
+            app:destination="@id/myAd" />
+        <action
+            android:id="@+id/action_fragment_account_to_adOpenInfo"
+            app:destination="@id/adOpenInfo">
+        <argument android:name="adImage"
+            app:argType="string" />
+            <argument
+                android:name="adName"
+                app:argType="string" />
+            <argument
+                android:name="adDetail"
+                app:argType="string" />
+            <argument
+                android:name="adTime"
+                app:argType="string" />
+            <argument
+                android:name="adUser"
+                app:argType="string" />
+    </action>
+        <action
+            android:id="@+id/action_fragment_account_to_myMessage"
+            app:destination="@id/myMessage" />
+        <action
+            android:id="@+id/action_fragment_account_to_fragment_sign_in"
+            app:destination="@id/fragment_sign_in" />
+        <action
+            android:id="@+id/action_fragment_account_to_choose_city_fragment"
+            app:destination="@id/choose_city_fragment">
+            <argument
+                android:name="from"
+                app:argType="string" />
+        </action>
     </fragment>
 
     <fragment
@@ -47,11 +85,90 @@
         android:name="com.ermilov.sf.add_ad.ui.Fragment_Add_Ad"
         android:label="fragment_add_ad"
         tools:layout="@layout/fragment__add__ad">
-
-
         <action android:id="@+id/action_addAd_fragment_to_account_fragment"
             app:destination="@id/fragment_account">
         </action>
 
+    </fragment>
+
+    <fragment
+        android:id="@+id/choose_city_fragment"
+        android:name="com.ermilov.sf.chooseCity.ChooseCityFragment"
+        android:label="choose_city_fragment"
+        tools:layout="@layout/choose_city_fragment">
+        <action android:id="@+id/choose_city_fragment_to_registration_fragment"
+            app:destination="@id/fragment_Registration">
+        </action>
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_choose_city_fragment_to_fragment_account"
+            app:destination="@id/fragment_account"
+            >
+            <argument
+                android:name="from"
+                app:argType="string" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/myAd"
+        android:name="com.ermilov.sf.myad.ui.MyAdFragment"
+        android:label="fragment_my_ad"
+        tools:layout="@layout/fragment_my_ad" >
+        <action
+            android:id="@+id/action_myAd_to_fragment_account"
+            app:destination="@id/fragment_account" />
+    </fragment>
+    <fragment
+        android:id="@+id/adOpenInfo"
+        android:name="com.ermilov.sf.adopenfromRecycler.AdOpenInfo"
+        android:label="fragment_ad_open_info"
+        tools:layout="@layout/fragment_ad_open_info" >
+        <action
+            android:id="@+id/action_adOpenInfo_to_fragment_account"
+            app:destination="@id/fragment_account">
+        </action>
+        <argument android:name="adImage"
+            app:argType="string" />
+        <argument
+            android:name="adName"
+            app:argType="string" />
+        <argument
+            android:name="adDetail"
+            app:argType="string" />
+        <argument
+            android:name="adTime"
+            app:argType="string" />
+        <argument
+            android:name="adUser"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_adOpenInfo_to_chatFragment"
+            app:destination="@id/chatFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.ermilov.sf.chat.ChatFragment"
+        android:label="fragment_chat"
+        tools:layout="@layout/fragment_chat" >
+        <action
+            android:id="@+id/action_chatFragment_to_adOpenInfo"
+            app:destination="@id/adOpenInfo" />
+        <argument
+            android:name="adAutor"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_chatFragment_to_myMessage"
+            app:destination="@id/myMessage" />
+    </fragment>
+    <fragment
+        android:id="@+id/myMessage"
+        android:name="com.ermilov.sf.myMessage.MyMessage"
+        android:label="fragment_my_message"
+        tools:layout="@layout/fragment_my_message" >
+        <action
+            android:id="@+id/action_myMessage_to_chatFragment"
+            app:destination="@id/chatFragment" />
     </fragment>
 </navigation>

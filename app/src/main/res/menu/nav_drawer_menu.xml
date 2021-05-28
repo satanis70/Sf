@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/myAd"
+        android:title="@string/myAd">
+    </item>
+    <item android:id="@+id/myMessages"
+        android:title="@string/myMessages">
+    </item>
+    <item android:id="@+id/exitAccount"
+        android:title="@string/exitAccount">
+    </item>
+</menu>

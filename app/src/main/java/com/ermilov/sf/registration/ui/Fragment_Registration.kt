@@ -1,6 +1,7 @@
 package com.ermilov.sf.registration.ui
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
@@ -53,6 +55,7 @@ class Fragment_Registration : Fragment() {
                     if (it.isSuccessful){
                         firebaseDatabaseAddNametoId(editUserName)
                         Toast.makeText(context, R.string.registration_successfull, Toast.LENGTH_SHORT).show()
+                        view.hideKeyboard()
                         navController.navigate(R.id.action_fragment_Registration_to_fragment_account)
                     }
                 }.addOnFailureListener {
@@ -70,6 +73,11 @@ class Fragment_Registration : Fragment() {
 
     private fun firebaseDatabaseAddNametoId(username: String){
         FirebaseDatabase.getInstance().getReference("Users").child(auth.uid!!).setValue(username)
+    }
+
+    fun View.hideKeyboard() {
+        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(windowToken, 0)
     }
 
 
